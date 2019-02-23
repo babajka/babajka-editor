@@ -1,0 +1,21 @@
+{
+  "projectName": "babajka-editor",
+  "projectOwner": "Drapegnik",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "Drapegnik",
+      "name": "Ivan Pazhitnykh",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/11758660?v=4",
+      "profile": "http://linkedin.com/in/drapegnik",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "repoType": "github"
+}
