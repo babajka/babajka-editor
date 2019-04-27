@@ -1,7 +1,7 @@
 <div align="center">
-<h1>babajka-editor</h1>
+<h1>@babajka/editor</h1>
 
-<p>draft.js editor</p>
+<p>another rich text <a href="https://github.com/ianstormtaylor/slate">slate</a></p> editor
 </div>
 
 <hr />
@@ -10,7 +10,7 @@
 [![Code Coverage][coverage-badge]][coverage]
 [![version][version-badge]][package]
 [![downloads][downloads-badge]][npmtrends]
-[![MIT License][license-badge]][LICENSE]
+[![MIT License][license-badge]][license]
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 [![PRs Welcome][prs-badge]][prs]
@@ -31,15 +31,10 @@
 ## Table of Contents
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION. It'll update automatically -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Props](#props)
-- [Control Props](#control-props)
-- [Child Callback Function](#child-callback-function)
-- [Examples](#examples)
-- [FAQ](#faq)
 - [Inspiration](#inspiration)
 - [Other Solutions](#other-solutions)
 - [Contributors](#contributors)
@@ -50,10 +45,10 @@
 ## Installation
 
 This module is distributed via [npm][npm] which is bundled with [node][node] and
-should be installed as one of your project's `devDependencies`:
+should be installed as one of your project's `dependencies`:
 
 ```
-npm install --save-dev babajka-editor
+npm install --save @babajka/editor
 ```
 
 ## Usage
@@ -77,6 +72,7 @@ Thanks goes to these people ([emoji key][emojis]):
 <!-- prettier-ignore -->
 | [<img src="https://avatars3.githubusercontent.com/u/11758660?v=4" width="100px;" alt="Ivan Pazhitnykh"/><br /><sub><b>Ivan Pazhitnykh</b></sub>](http://linkedin.com/in/drapegnik)<br />[💻](https://github.com/Drapegnik/babajka-editor/commits?author=Drapegnik "Code") |
 | :---: |
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors][all-contributors] specification.

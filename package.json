@@ -1,13 +1,14 @@
 {
-  "name": "babajka-editor",
+  "name": "@babajka/editor",
   "version": "0.0.0-semantically-released",
-  "description": "draft.js editor",
+  "description": "another rich text slate editor",
   "main": "dist/index.js",
   "engines": {
     "node": "> 4",
     "npm": "> 3"
   },
   "scripts": {
+    "dev": "cd examples/ssr-with-next && npm run dev",
     "add-contributor": "kcd-scripts contributors add",
     "build": "kcd-scripts build",
     "lint": "kcd-scripts lint",
@@ -19,7 +20,11 @@
   "files": [
     "dist"
   ],
-  "keywords": [],
+  "keywords": [
+    "slate",
+    "editor",
+    "rich"
+  ],
   "author": "Ivan Pazhitnykh <ivan@wir.by>",
   "license": "MIT",
   "peerDependencies": {
@@ -27,7 +32,12 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.2.0",
-    "draft-js": "^0.10.5"
+    "immutable": "^4.0.0-rc.12",
+    "is-hotkey": "^0.1.4",
+    "react-render-html": "^0.6.0",
+    "slate": "^0.45.1",
+    "slate-html-serializer": "^0.7.39",
+    "slate-react": "^0.21.21"
   },
   "devDependencies": {
     "kcd-scripts": "^0.49.0",
@@ -40,9 +50,6 @@
       "pre-commit": "kcd-scripts pre-commit"
     }
   },
-  "eslintConfig": {
-    "extends": "./node_modules/kcd-scripts/eslint.js"
-  },
   "eslintIgnore": [
     "node_modules",
     "coverage",
@@ -50,10 +57,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/babajka/babajka-editor.git"
+    "url": "https://github.com/babajka/editor.git"
   },
   "bugs": {
-    "url": "https://github.com/babajka/babajka-editor/issues"
+    "url": "https://github.com/babajka/editor/issues"
   },
-  "homepage": "https://github.com/babajka/babajka-editor#readme"
+  "homepage": "https://github.com/babajka/editor#readme"
 }

@@ -1,8 +1,11 @@
 import React from 'react';
-
 import NextHead from 'next/head';
 
 import BabajkaEditor from '../../../src';
+import renderToHtml from '../../../src/renderToHtml';
+
+// eslint-disable-next-line import/extensions
+import initialState from '../initialState.json';
 
 const Home = () => (
   <div>
@@ -21,8 +24,15 @@ const Home = () => (
       </p>
     </div>
 
-    <div className="editor-wrapper">
-      <BabajkaEditor />
+    <div className="content">
+      <div className="editor-wrapper">
+        <h2>Editor</h2>
+        <BabajkaEditor value={initialState} />
+      </div>
+      <div className="editor-wrapper">
+        <h2>renderToHtml</h2>
+        {renderToHtml(initialState)}
+      </div>
     </div>
 
     <style jsx>{`
@@ -45,7 +55,12 @@ const Home = () => (
       .description {
         text-align: center;
       }
+      .content {
+        display: flex;
+        flex-direction: row;
+      }
       .editor-wrapper {
+        flex-grow: 0.5;
         margin: 50px;
       }
     `}</style>
