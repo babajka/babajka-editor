@@ -9,7 +9,16 @@
         "type": "H1",
         "data": {},
         "nodes": [
-          { "object": "text", "leaves": [{ "object": "leaf", "text": "Top Header", "marks": [] }] }
+          {
+            "object": "text",
+            "leaves": [
+              {
+                "object": "leaf",
+                "text": "Top Header",
+                "marks": []
+              }
+            ]
+          }
         ]
       },
       {
@@ -19,7 +28,13 @@
         "nodes": [
           {
             "object": "text",
-            "leaves": [{ "object": "leaf", "text": "A line of text in a paragraph.", "marks": [] }]
+            "leaves": [
+              {
+                "object": "leaf",
+                "text": "A line of text in a paragraph.",
+                "marks": []
+              }
+            ]
           }
         ]
       },
@@ -34,7 +49,13 @@
               {
                 "object": "leaf",
                 "text": "bold paragraph",
-                "marks": [{ "object": "mark", "type": "BOLD", "data": {} }]
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "BOLD",
+                    "data": {}
+                  }
+                ]
               }
             ]
           }
@@ -51,7 +72,13 @@
               {
                 "object": "leaf",
                 "text": "italic paragraph",
-                "marks": [{ "object": "mark", "type": "ITALIC", "data": {} }]
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "ITALIC",
+                    "data": {}
+                  }
+                ]
               }
             ]
           }
@@ -68,7 +95,13 @@
               {
                 "object": "leaf",
                 "text": "underline paragraph",
-                "marks": [{ "object": "mark", "type": "UNDERLINE", "data": {} }]
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "UNDERLINE",
+                    "data": {}
+                  }
+                ]
               }
             ]
           }
@@ -85,7 +118,13 @@
               {
                 "object": "leaf",
                 "text": "code paragraph",
-                "marks": [{ "object": "mark", "type": "CODE", "data": {} }]
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "CODE",
+                    "data": {}
+                  }
+                ]
               }
             ]
           }
@@ -102,7 +141,54 @@
               {
                 "object": "leaf",
                 "text": "",
-                "marks": [{ "object": "mark", "type": "CODE", "data": {} }]
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "CODE",
+                    "data": {}
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "inline",
+            "type": "LINK",
+            "data": {
+              "href": "http://map.wir.by/legends"
+            },
+            "nodes": [
+              {
+                "object": "text",
+                "leaves": [
+                  {
+                    "object": "leaf",
+                    "text": "Legends Map Link",
+                    "marks": [
+                      {
+                        "object": "mark",
+                        "type": "CODE",
+                        "data": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "object": "text",
+            "leaves": [
+              {
+                "object": "leaf",
+                "text": "",
+                "marks": [
+                  {
+                    "object": "mark",
+                    "type": "CODE",
+                    "data": {}
+                  }
+                ]
               }
             ]
           }
@@ -112,7 +198,18 @@
         "object": "block",
         "type": "paragraph",
         "data": {},
-        "nodes": [{ "object": "text", "leaves": [{ "object": "leaf", "text": "", "marks": [] }] }]
+        "nodes": [
+          {
+            "object": "text",
+            "leaves": [
+              {
+                "object": "leaf",
+                "text": "",
+                "marks": []
+              }
+            ]
+          }
+        ]
       }
     ]
   }

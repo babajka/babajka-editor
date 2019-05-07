@@ -1,7 +1,7 @@
 <div align="center">
 <h1>@babajka/editor</h1>
 
-<p>another rich text <a href="https://github.com/ianstormtaylor/slate">slate</a></p> editor
+<p>another rich text <a href="https://github.com/ianstormtaylor/slate">slate</a> editor</p> 
 </div>
 
 <hr />

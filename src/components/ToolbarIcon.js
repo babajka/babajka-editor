@@ -9,12 +9,13 @@ import Code from 'quill-icons/lib/icons/code';
 import Header from 'quill-icons/lib/icons/header';
 import Header2 from 'quill-icons/lib/icons/header-2';
 import Header3 from 'quill-icons/lib/icons/header-3';
+import Link from 'quill-icons/lib/icons/link';
 
 import Clickable from '../lib/components/Clickable';
 import { MARK_TYPES, NODE_TYPES } from '../consts';
 
 const { BOLD, CODE, ITALIC, UNDERLINE, STRIKE } = MARK_TYPES;
-const { H1, H2, H3 } = NODE_TYPES;
+const { H1, H2, H3, LINK } = NODE_TYPES;
 
 const ICONS = {
   [BOLD]: Bold,
@@ -25,6 +26,7 @@ const ICONS = {
   [H1]: Header,
   [H2]: Header2,
   [H3]: Header3,
+  [LINK]: Link,
 };
 
 const ToolbarIcon = ({ name, active, onClick }) => {

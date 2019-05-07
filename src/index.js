@@ -8,6 +8,7 @@ import isHotkey from 'is-hotkey';
 import { renderMark, renderNode } from './renderers';
 import { MARK_TYPES, NODE_TYPES, DEFAULT_NODE } from './consts';
 import ToolbarIcon from './components/ToolbarIcon';
+import { unwrapLink, wrapLink } from './commands';
 
 const markHotkey = options => {
   const { type, key } = options;
@@ -107,8 +108,51 @@ class BabajkaEditor extends Component {
       mark: 'activeMarks',
       block: 'blocks',
     };
+    const PATH_BY_ID = {
+      [NODE_TYPES.LINK]: 'inlines',
+    };
+    const path = PATH_BY_ID[id] || PATH_BY_TYPE[type];
     const { value } = this.state;
-    return value[PATH_BY_TYPE[type]].some(item => item.type === id);
+    return value[path].some(item => item.type === id);
+  };
+
+  handleLink = isActive => {
+    const { value } = this.state;
+    if (isActive) {
+      this.editor.command(unwrapLink);
+      return;
+    }
+    // add link to text
+    if (value.selection.isExpanded) {
+      // eslint-disable-next-line no-alert
+      const href = window.prompt('Enter the URL of the link:');
+
+      if (href == null) {
+        return;
+      }
+
+      this.editor.command(wrapLink, href);
+      return;
+    }
+    // add text with link
+    // eslint-disable-next-line no-alert
+    const href = window.prompt('Enter the URL of the link:');
+
+    if (href == null) {
+      return;
+    }
+
+    // eslint-disable-next-line no-alert
+    const text = window.prompt('Enter the text for the link:');
+
+    if (text == null) {
+      return;
+    }
+
+    this.editor
+      .insertText(text)
+      .moveFocusBackward(text.length)
+      .command(wrapLink, href);
   };
 
   onToolbarItemClick = (type, event, id) => {
@@ -119,6 +163,10 @@ class BabajkaEditor extends Component {
     }
     // block
     const isActive = this.isActive(type, id);
+    if (id === NODE_TYPES.LINK) {
+      this.handleLink(isActive);
+      return;
+    }
     this.editor.setBlocks(isActive ? DEFAULT_NODE : id);
   };
 

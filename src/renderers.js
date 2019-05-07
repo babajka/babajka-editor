@@ -16,6 +16,12 @@ export const renderNode = ({ type, data, children, attrs }) => {
       return <h2 {...attrs}>{children}</h2>;
     case NODE_TYPES.H3:
       return <h3 {...attrs}>{children}</h3>;
+    case NODE_TYPES.LINK:
+      return (
+        <a {...attrs} href={data.get('href')}>
+          {children}
+        </a>
+      );
     default:
       return null;
   }
@@ -42,4 +48,6 @@ export default {
   block: renderNode,
   mark: renderMark,
   string: ({ children }) => children,
+  // FIXME
+  inline: renderNode,
 };
