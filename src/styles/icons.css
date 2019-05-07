@@ -1,0 +1,80 @@
+.toolbar-item {
+  width: 25px;
+  height: 25px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.toolbar-item-active {
+  width: 25px;
+  height: 25px;
+  margin: 4px;
+  border: 1px solid #2e4453;
+}
+
+/* .toolbar-item-disable > * {
+  stroke: #ccc;
+  cursor: not-allowed;
+} */
+
+/* icons */
+
+.ql-stroke {
+  stroke: #4f748e;
+  fill: transparent;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5px;
+}
+
+.ql-stroke-active {
+  stroke: #333;
+  fill: transparent;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2px;
+}
+
+.ql-fill {
+  fill: #4f748e;
+}
+
+.ql-fill-active {
+  fill: #333;
+}
+
+.ql-even {
+  stroke: #4f748e;
+  fill: #fff;
+}
+
+.ql-even-active {
+  stroke: #333;
+  fill: #fff;
+}
+
+.ql-transparent {
+  opacity: 0.2;
+}
+
+.ql-stroke-mitter {
+  stroke: #4f748e;
+  fill: transparent;
+}
+
+.ql-stroke-mitter-active {
+  stroke: #333;
+  fill: transparent;
+}
+
+.ql-thin {
+  stroke: #4f748e;
+  fill: transparent;
+  stroke-width: 1;
+}
+
+.ql-thin-active {
+  stroke: #333;
+  fill: transparent;
+  stroke-width: 2;
+}

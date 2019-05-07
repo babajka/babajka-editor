@@ -1,9 +1,10 @@
 {
   "name": "create-next-example-app",
   "scripts": {
+    "start": "npm run dev",
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "prod": "next start"
   },
   "dependencies": {
     "@zeit/next-css": "^1.0.1",

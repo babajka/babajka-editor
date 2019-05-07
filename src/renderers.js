@@ -2,29 +2,37 @@ import React from 'react';
 
 import { MARK_TYPES, NODE_TYPES } from './consts';
 
-export const renderNode = ({ type, data, children }) => {
+export const renderNode = ({ type, data, children, attrs }) => {
   switch (type) {
     case 'paragraph':
-      return <p className={data.get('className')}>{children}</p>;
+      return (
+        <p {...attrs} className={data.get('className')}>
+          {children}
+        </p>
+      );
     case NODE_TYPES.H1:
-      return <h1>{children}</h1>;
+      return <h1 {...attrs}>{children}</h1>;
+    case NODE_TYPES.H2:
+      return <h2 {...attrs}>{children}</h2>;
+    case NODE_TYPES.H3:
+      return <h3 {...attrs}>{children}</h3>;
     default:
       return null;
   }
 };
 
-export const renderMark = ({ type, children }) => {
+export const renderMark = ({ type, children, attrs }) => {
   switch (type) {
     case MARK_TYPES.BOLD:
-      return <strong>{children}</strong>;
+      return <strong {...attrs}>{children}</strong>;
     case MARK_TYPES.CODE:
-      return <code>{children}</code>;
+      return <code {...attrs}>{children}</code>;
     case MARK_TYPES.ITALIC:
-      return <em>{children}</em>;
+      return <em {...attrs}>{children}</em>;
     case MARK_TYPES.STRIKE:
-      return <del>{children}</del>;
+      return <del {...attrs}>{children}</del>;
     case MARK_TYPES.UNDERLINE:
-      return <u>{children}</u>;
+      return <u {...attrs}>{children}</u>;
     default:
       return null;
   }
