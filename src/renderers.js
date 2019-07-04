@@ -1,17 +1,21 @@
 import React from 'react';
 
-import { MARK_TYPES, NODE_TYPES } from './consts';
+import { MARK_TYPES, NODE_TYPES, DEFAULT_NODE } from './consts';
 
 export const renderNode = ({ type, data, children, attrs }) => {
   switch (type) {
-    case 'paragraph':
+    case NODE_TYPES.SECTION:
       return (
-        <p {...attrs} className={data.get('className')}>
+        <section {...attrs} className="article-page__block">
+          {children}
+        </section>
+      );
+    case DEFAULT_NODE:
+      return (
+        <p {...attrs} className="article-page__paragraph">
           {children}
         </p>
       );
-    case NODE_TYPES.H1:
-      return <h1 {...attrs}>{children}</h1>;
     case NODE_TYPES.H2:
       return <h2 {...attrs}>{children}</h2>;
     case NODE_TYPES.H3:

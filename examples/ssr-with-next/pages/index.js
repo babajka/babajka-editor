@@ -5,9 +5,13 @@ import BabajkaEditor from '../../../src';
 import renderToHtml from '../../../src/renderToHtml';
 
 // eslint-disable-next-line import/extensions
-import initialState from '../initialState.json';
+// import initialState from '../initialState.json';
+// eslint-disable-next-line import/extensions
+import initialState from '../article.json';
 
 import '../../../src/styles/icons.css';
+
+const STYLES_LINK = 'https://babajka.github.io/babajka-markup/static/styles/bundle.min.css';
 
 class Home extends Component {
   static propTypes = {};
@@ -26,6 +30,7 @@ class Home extends Component {
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="mask-icon" href="/static/favicon-mask.svg" color="#49B882" />
           <link rel="icon" href="/static/favicon.ico" />
+          <link rel="stylesheet" href={STYLES_LINK} />
         </NextHead>
 
         <div className="hero">
@@ -41,9 +46,22 @@ class Home extends Component {
             <div className="border">
               <BabajkaEditor value={content} onChange={c => this.setState({ content: c })} />
             </div>
+            {/* // DEBUG:  */}
+            {content.document.nodes.map((node, i) => (
+              <div key={i}>
+                <p>{node.type}</p>
+                <ul>
+                  {node.nodes.map((n, j) => (
+                    // <li key={j}>{JSON.stringify(n)}</li>
+                    <li key={j}>{n.type}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
           <div className="editor-wrapper">
             <h2>renderToHtml</h2>
+            <h1 className="article-page__title">Як прыгатаваць мову ВКЛ?</h1>
             {renderToHtml(content)}
           </div>
         </div>
@@ -76,6 +94,8 @@ class Home extends Component {
           .editor-wrapper {
             flex-grow: 0.5;
             margin: 50px;
+            min-width: 500px;
+            max-width: 500px;
           }
           .border {
             border: 1px solid black;

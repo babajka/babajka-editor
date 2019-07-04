@@ -1,14 +1,33 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import { Editor } from 'slate-react';
 import { KeyUtils, Value } from 'slate';
-// import Types from 'slate-prop-types';
 import isHotkey from 'is-hotkey';
 
 import { renderMark, renderNode } from './renderers';
-import { MARK_TYPES, NODE_TYPES, DEFAULT_NODE } from './consts';
+import { MARK_TYPES, NODE_TYPES, DEFAULT_NODE, HOTKEYS } from './consts';
 import ToolbarIcon from './components/ToolbarIcon';
 import { unwrapLink, wrapLink } from './commands';
+
+const schema = {
+  document: {
+    nodes: [
+      {
+        match: [{ type: NODE_TYPES.SECTION }, { type: DEFAULT_NODE }],
+      },
+    ],
+  },
+  blocks: {
+    [NODE_TYPES.SECTION]: {
+      nodes: [
+        {
+          match: [{ type: DEFAULT_NODE, min: 1 }, { type: NODE_TYPES.H2 }, { type: NODE_TYPES.H3 }],
+        },
+      ],
+    },
+  },
+};
 
 const markHotkey = options => {
   const { type, key } = options;
@@ -25,13 +44,7 @@ const markHotkey = options => {
   };
 };
 
-const plugins = [
-  markHotkey({ key: 'b', type: MARK_TYPES.BOLD }),
-  markHotkey({ key: '`', type: MARK_TYPES.CODE }),
-  markHotkey({ key: 'i', type: MARK_TYPES.ITALIC }),
-  markHotkey({ key: '~', type: MARK_TYPES.STRIKE }),
-  markHotkey({ key: 'u', type: MARK_TYPES.UNDERLINE }),
-];
+const plugins = Object.values(MARK_TYPES).map(type => markHotkey({ type, key: HOTKEYS[type] }));
 
 const noop = () => {};
 
@@ -67,8 +80,20 @@ class BabajkaEditor extends Component {
   };
 
   onKeyDown = (event, editor, next) => {
+    // FIXME: break header on enter
+    if (isHotkey('enter', event)) {
+      if (this.isActive('block', NODE_TYPES.H2) || this.isActive('block', NODE_TYPES.H3)) {
+        this.editor.splitBlock().setBlocks(DEFAULT_NODE);
+        return;
+      }
+    }
+
     if (isHotkey('mod+s', event)) {
       this.handleSave();
+      return;
+    }
+    if (isHotkey('shift+enter', event)) {
+      this.insertSection();
       return;
     }
     // eslint-disable-next-line consistent-return
@@ -81,6 +106,14 @@ class BabajkaEditor extends Component {
     console.log(value.toJSON());
     alert('saved! check console');
     /* eslint-enable */
+  };
+
+  insertSection = () => {
+    this.editor
+      .focus()
+      .splitBlock()
+      .unwrapBlock()
+      .wrapBlock(NODE_TYPES.SECTION);
   };
 
   renderNode = (props, editor, next) => {
@@ -158,7 +191,7 @@ class BabajkaEditor extends Component {
   onToolbarItemClick = (type, event, id) => {
     event.preventDefault();
     if (type === 'mark') {
-      this.editor.toggleMark(id);
+      this.editor.toggleMark(id).focus();
       return;
     }
     // block
@@ -167,17 +200,20 @@ class BabajkaEditor extends Component {
       this.handleLink(isActive);
       return;
     }
-    this.editor.setBlocks(isActive ? DEFAULT_NODE : id);
+    if (id === NODE_TYPES.SECTION) {
+      this.insertSection();
+      return;
+    }
+    this.editor.setBlocks(isActive ? DEFAULT_NODE : id).focus();
   };
 
   renderToolbarItem = (type, id) => {
-    const isActive = this.isActive(type, id);
     return (
       <ToolbarIcon
         key={id}
         name={id}
         onClick={event => this.onToolbarItemClick(type, event, id)}
-        active={isActive}
+        active={this.isActive(type, id)}
       />
     );
   };
@@ -187,12 +223,13 @@ class BabajkaEditor extends Component {
       <div>
         {' '}
         <div>
-          {Object.keys(MARK_TYPES).map(id => this.renderToolbarItem('mark', id))}
-          {Object.keys(NODE_TYPES).map(id => this.renderToolbarItem('block', id))}
+          {Object.keys(MARK_TYPES).map(this.renderToolbarItem.bind(null, 'mark'))}
+          {Object.keys(NODE_TYPES).map(this.renderToolbarItem.bind(null, 'block'))}
         </div>
         <Editor
           ref={this.ref}
           plugins={plugins}
+          schema={schema}
           placeholder="Enter some plain text..."
           value={this.state.value}
           onChange={this.onChange}

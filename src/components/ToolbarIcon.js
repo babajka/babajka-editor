@@ -6,16 +6,16 @@ import Italic from 'quill-icons/lib/icons/italic';
 import Strike from 'quill-icons/lib/icons/strike';
 import Underline from 'quill-icons/lib/icons/underline';
 import Code from 'quill-icons/lib/icons/code';
-import Header from 'quill-icons/lib/icons/header';
+import FloatFull from 'quill-icons/lib/icons/float-full';
 import Header2 from 'quill-icons/lib/icons/header-2';
 import Header3 from 'quill-icons/lib/icons/header-3';
 import Link from 'quill-icons/lib/icons/link';
 
 import Clickable from '../lib/components/Clickable';
-import { MARK_TYPES, NODE_TYPES } from '../consts';
+import { MARK_TYPES, NODE_TYPES, HOTKEYS } from '../consts';
 
 const { BOLD, CODE, ITALIC, UNDERLINE, STRIKE } = MARK_TYPES;
-const { H1, H2, H3, LINK } = NODE_TYPES;
+const { SECTION, H2, H3, LINK } = NODE_TYPES;
 
 const ICONS = {
   [BOLD]: Bold,
@@ -23,10 +23,21 @@ const ICONS = {
   [UNDERLINE]: Underline,
   [STRIKE]: Strike,
   [CODE]: Code,
-  [H1]: Header,
   [H2]: Header2,
   [H3]: Header3,
   [LINK]: Link,
+  [SECTION]: FloatFull,
+};
+
+const getTitle = name => {
+  if (name === SECTION) {
+    return 'Add Section (shift+enter)';
+  }
+  const hotkey = HOTKEYS[name];
+  if (hotkey) {
+    return `${name} (ctrl+${hotkey})`;
+  }
+  return name;
 };
 
 const ToolbarIcon = ({ name, active, onClick }) => {
@@ -50,7 +61,7 @@ const ToolbarIcon = ({ name, active, onClick }) => {
   }, {});
 
   return (
-    <Clickable onClick={onClick} title={name}>
+    <Clickable onClick={onClick} title={getTitle(name)}>
       <Icon className="toolbar-item" {...iconProps} />
     </Clickable>
   );
